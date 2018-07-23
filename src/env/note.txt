@@ -1,0 +1,29 @@
+增加一个环境配置步骤：
+1、在src/base/env目录下增加一个env.{env}.js；
+2、在src/base/env/index中引入，并且在这段代码中加入即可：
+
+switch (process.env.env) {
+  case "dev":
+    targetEnv = devEnv
+    break;
+  case 'uat':
+    targetEnv = uatEnv
+    break;
+  default:
+    throw new Error(`找不到当前环境-->>${process.env.env}`)
+}
+
+注意事项：
+1、每个环境配置文件的对象属性最好一致，必须包含比如必须包含tag、envName、mobile_ip等属性值。
+
+
+环境切换配置原理：
+1、增加cross-env依赖：cnpm install cross-env --save-dev
+2、在package.json的script中增加启动参数：比如dev-release命令：
+    "dev-release": "cross-env env=dev release=true node build/build.js"
+  其中 cross-env env=dev release=true 会创建一个对方放在process.env中，也就是：
+    process.env = {env:'dev',release:true}
+3、在config/prod.env.js中将这两个属性放到process.env中，因为dev.env.js会继承prod.env.js中的对象，所以不必再dev.env.js中设置
+4、这些步骤弄好了之后，就可以在程序运行之后，判断当前环境、以及是否为打包版本
+
+
