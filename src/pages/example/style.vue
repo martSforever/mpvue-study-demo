@@ -55,15 +55,13 @@
 
 <style scoped lang="scss">
   .style {
-
-    color: $vip-color;
-
     & > div {
       margin-bottom: 12px;
       padding: 12px;
       color: white;
       letter-spacing: 2px;
       background-color: gray;
+      transition: all 0.4s;
     }
 
     .red {
