@@ -14,6 +14,6 @@
 
 <style lang="scss">
   @import "libs/iconfont/iconfont.css";
-  @import "assets/css/global-css";
+  @import "assets/css/global";
 
 </style>
